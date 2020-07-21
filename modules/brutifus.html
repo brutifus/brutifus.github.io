@@ -1,0 +1,1271 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>brutifus package &mdash; brutifus 2019.08.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="brutifus" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> brutifus
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2019.08.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing brutifus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../running.html">Running brutifus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledge.html">Acknowledging brutifus</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">brutifus</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">brutifus package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-brutifus.brutifus">brutifus.brutifus module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-brutifus.brutifus_cof">brutifus.brutifus_cof module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-brutifus.brutifus_metadata">brutifus.brutifus_metadata module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-brutifus.brutifus_plots">brutifus.brutifus_plots module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-brutifus.brutifus_red">brutifus.brutifus_red module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-brutifus.brutifus_tools">brutifus.brutifus_tools module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-brutifus.brutifus_version">brutifus.brutifus_version module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-brutifus.brutifus_wcs">brutifus.brutifus_wcs module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-brutifus">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fpavogt/brutifus">Github</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">brutifus</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">brutifus</a> &raquo;</li>
+        
+      <li>brutifus package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/brutifus.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="brutifus-package">
+<h1>brutifus package<a class="headerlink" href="#brutifus-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-brutifus.brutifus">
+<span id="brutifus-brutifus-module"></span><h2>brutifus.brutifus module<a class="headerlink" href="#module-brutifus.brutifus" title="Permalink to this headline">¶</a></h2>
+<p>brutifus: a set of Python modules to process datacubes from integral field spectrographs.</p>
+<p>Copyright (C) 2018-2019,  F.P.A. Vogt</p>
+<hr class="docutils" />
+<p>This file contains the master brutifus routines. Most of these routines call sub-routines,
+after setting the scene/loading datasets/etc …</p>
+<p>Any processing step MUST have a dediacted routine in this file called ‘run_XXX’, which can
+then refer to any existing/new brutifus/Python module.</p>
+<p>Created November 2018, F.P.A. Vogt - <a class="reference external" href="mailto:frederic&#46;vogt&#37;&#52;&#48;alumni&#46;anu&#46;edu&#46;au">frederic<span>&#46;</span>vogt<span>&#64;</span>alumni<span>&#46;</span>anu<span>&#46;</span>edu<span>&#46;</span>au</a></p>
+<hr class="docutils" />
+<p>This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.</p>
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License
+along with this program.  If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+<dl class="py function">
+<dt id="brutifus.brutifus.run">
+<code class="sig-prename descclassname">brutifus.brutifus.</code><code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">procsteps_fn</span></em>, <em class="sig-param"><span class="n">params_fn</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a given set of brutifus processing steps with certain parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>procsteps_fn</strong> (<em>string</em>) – filename containing the processing steps</p></li>
+<li><p><strong>params_fn</strong> (<em>string</em>) – filename containing the scientific parameters</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus.run_adjust_WCS">
+<code class="sig-prename descclassname">brutifus.brutifus.</code><code class="sig-name descname">run_adjust_WCS</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn_list</span></em>, <em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">suffix</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name_in</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name_out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus.html#run_adjust_WCS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus.run_adjust_WCS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjust the WCS solution of the cube using Gaia.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_list</strong> (<em>dict</em>) – The dictionary containing all filenames created by brutifus.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – The dictionary containing all paramaters set by the user.</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – The tag of this step, to be used in all files generated for rapid id.</p></li>
+<li><p><strong>name_in</strong> (<em>str</em>) – name tag to identify which cube to use to run the routine</p></li>
+<li><p><strong>name_out</strong> (<em>str</em>) – name tag to identify which cube comes out of the routine</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The updated dictionary of filenames.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Proper motions for the GAIA entries are propagated to the DATE-OBS of the data.
+Source identification in white-light image based on <code class="xref py py-class docutils literal notranslate"><span class="pre">photutils.DAOStarFinder</span></code></p>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Avoid using a hard-coded pixel FWHM for the cross-correlation?</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus.run_crude_snr_maps">
+<code class="sig-prename descclassname">brutifus.brutifus.</code><code class="sig-name descname">run_crude_snr_maps</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn_list</span></em>, <em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">suffix</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name_in</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">zcorr_lams</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus.html#run_crude_snr_maps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus.run_crude_snr_maps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes a crude S/N ratio for a continuum range or emission line.</p>
+<p>This function computes the SNR maps for the continuum or emission lines.
+It also creates a map of spaxels with any signal at all.
+The resulting maps are saved to a fits file with full header and WCS coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_list</strong> (<em>dict</em>) – The dictionary containing all filenames created by brutifus.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – The dictionary containing all paramaters set by the user.</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – The tag of this step, to be used in all files generated for rapid id.</p></li>
+<li><p><strong>name_in</strong> (<em>str</em>) – name tag to identify which cube to use to run the routine.</p></li>
+<li><p><strong>zcorr_lams</strong> (<em>bool</em>) – True -&gt; correct the wavelength range for the target redshift.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The updated dictionary of filenames.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function is a “first guess” of the SNR for latter use in the code. A more
+reliable measure of the SNR for the emission line should be computed after they
+have been fitted.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus.run_fit_continuum">
+<code class="sig-prename descclassname">brutifus.brutifus.</code><code class="sig-name descname">run_fit_continuum</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn_list</span></em>, <em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">suffix</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name_in</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">start_row</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">end_row</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">method</span><span class="o">=</span><span class="default_value">'lowess'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus.html#run_fit_continuum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus.run_fit_continuum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits the stellar/nebular continuum using a specific method.</p>
+<p>This function fits the continuum in the datacube. It is designed to use multiprocessing
+to speed things up on good computers. It deals with the data columns-per-columns, and
+can be restarted mid-course, in case of a crash.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_list</strong> (<em>dict</em>) – The dictionary containing all filenames created by brutifus.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – The dictionary containing all paramaters set by the user.</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – The tag of this step, to be used in all files generated for rapid id.</p></li>
+<li><p><strong>name_in</strong> (<em>str</em>) – name tag to identify which cube to use to run the routine</p></li>
+<li><p><strong>start_row</strong> (<em>int</em>) – the row from which to sart the fitting. None for min.</p></li>
+<li><p><strong>end_row</strong> (<em>int</em>) – the row on which to end the fitting (inclusive). None for max.</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – which method to use for the fitting ?</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The updated dictionary of filenames.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus.run_gal_dered">
+<code class="sig-prename descclassname">brutifus.brutifus.</code><code class="sig-name descname">run_gal_dered</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn_list</span></em>, <em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">suffix</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name_in</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name_out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus.html#run_gal_dered"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus.run_gal_dered" title="Permalink to this definition">¶</a></dt>
+<dd><p>Corrects for Galactic extinction, given the Ab and Av extinction.</p>
+<p>This function derives the Alambda value for any wavelength, and corrects the data to
+correct for our “local” extinction. Intended for extragalactic sources.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_list</strong> (<em>dict</em>) – The dictionary containing all filenames created by brutifus.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – The dictionary containing all paramaters set by the user.</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – The tag of this step, to be used in all files generated for rapid id.</p></li>
+<li><p><strong>name_in</strong> (<em>str</em>) – name tag to identify which cube to use to run the routine</p></li>
+<li><p><strong>name_out</strong> (<em>str</em>) – name tag to identify which cube comes out of the routine</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The updated dictionary of filenames.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To reproduce the approach from NED, use the Ab and Av value for you object
+from there, and set <code class="docutils literal notranslate"><span class="pre">curve='f99'</span></code>, <code class="docutils literal notranslate"><span class="pre">rv=3.1</span></code> in the params file.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus.run_make_continuum_cube">
+<code class="sig-prename descclassname">brutifus.brutifus.</code><code class="sig-name descname">run_make_continuum_cube</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn_list</span></em>, <em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">suffix</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">method</span><span class="o">=</span><span class="default_value">'lowess'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus.html#run_make_continuum_cube"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus.run_make_continuum_cube" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assemble a continuum cube from the individually-pickled fits.</p>
+<p>This function is designed to construct a “usable and decent” datacube out of the
+mess generated by the continuum fitting function, i.e. out of the many pickle
+files generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_list</strong> (<em>dict</em>) – The dictionary containing all filenames created by brutifus.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – The dictionary containing all paramaters set by the user.</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – The tag of this step, to be used in all files generated for rapid id.</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – which fits to gather ?</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The updated dictionary of filenames.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus.run_plot_BW">
+<code class="sig-prename descclassname">brutifus.brutifus.</code><code class="sig-name descname">run_plot_BW</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn_list</span></em>, <em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">suffix</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name_in</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bands</span><span class="o">=</span><span class="default_value">[[7500.0, 9300.0]]</span></em>, <em class="sig-param"><span class="n">conts</span><span class="o">=</span><span class="default_value">[[None, None]]</span></em>, <em class="sig-param"><span class="n">stretches</span><span class="o">=</span><span class="default_value">['arcsinh']</span></em>, <em class="sig-param"><span class="n">plims</span><span class="o">=</span><span class="default_value">[[10.0, 99.5]]</span></em>, <em class="sig-param"><span class="n">vlims</span><span class="o">=</span><span class="default_value">[[None, None]]</span></em>, <em class="sig-param"><span class="n">gauss_blurs</span><span class="o">=</span><span class="default_value">[None]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus.html#run_plot_BW"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus.run_plot_BW" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make some B&amp;W images from slices in the cube.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_list</strong> (<em>dict</em>) – The dictionary containing all filenames created by brutifus.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – The dictionary containing all paramaters set by the user.</p></li>
+<li><p><strong>suffix</strong> (<em>string</em>) – The tag of this step, to be used in all files generated for rapid id.</p></li>
+<li><p><strong>name_in</strong> (<em>string</em>) – name tag to identify which cube to use to run the routine</p></li>
+<li><p><strong>bands</strong> (<em>list</em>) – A list of wavelength pairs.</p></li>
+<li><p><strong>conts</strong> (<em>list</em>) – A list of wavelength pairs channels associated continuum regions.</p></li>
+<li><p><strong>stretches</strong> (<em>list</em>) – The stretches to apply to the data, e.g. ‘linear’, ‘log’, ‘arcsinh’.</p></li>
+<li><p><strong>plims</strong> (<em>list</em>) – The limiting percentiles for the plot</p></li>
+<li><p><strong>vlims</strong> (<em>list</em>) – The limiting values for the plot (superseeds stretch_plims)</p></li>
+<li><p><strong>gauss_blurs</strong> (<em>list</em>) – Radius of gaussian blur, None for nothing</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The updated dictionary of filenames.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus.run_plot_RGB">
+<code class="sig-prename descclassname">brutifus.brutifus.</code><code class="sig-name descname">run_plot_RGB</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn_list</span></em>, <em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">suffix</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name_in</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bands</span><span class="o">=</span><span class="default_value">[[7500.0, 9300.0, 6000.0, 7500.0, 4800.0, 6000.0]]</span></em>, <em class="sig-param"><span class="n">conts</span><span class="o">=</span><span class="default_value">[[None, None, None]]</span></em>, <em class="sig-param"><span class="n">stretches</span><span class="o">=</span><span class="default_value">[['arcsinh', 'arcsinh', 'arcsinh']]</span></em>, <em class="sig-param"><span class="n">plims</span><span class="o">=</span><span class="default_value">[[10.0, 99.5, 10.0, 99.5, 10.0, 99.5]]</span></em>, <em class="sig-param"><span class="n">vlims</span><span class="o">=</span><span class="default_value">[[None, None, None, None, None, None]]</span></em>, <em class="sig-param"><span class="n">gauss_blurs</span><span class="o">=</span><span class="default_value">[[None, None, None]]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus.html#run_plot_RGB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus.run_plot_RGB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make some RGB images from slices in the raw cube.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_list</strong> (<em>dict</em>) – The dictionary containing all filenames created by brutifus.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – The dictionary containing all paramaters set by the user.</p></li>
+<li><p><strong>suffix</strong> (<em>string</em>) – The tag of this step, to be used in all files generated for rapid id.</p></li>
+<li><p><strong>name_in</strong> (<em>string</em>) – name tag to identify which cube to use to run the routine</p></li>
+<li><p><strong>bands</strong> (<em>list</em>) – A list of 3 wavelength pairs.</p></li>
+<li><p><strong>conts</strong> (<em>list</em>) – A list of 3 wavelength pairs: channels associated continuum regions.</p></li>
+<li><p><strong>stretches</strong> (<em>list</em>) – The stretches to apply to each slice: ‘linear’, ‘log’, ‘arcsinh’, …</p></li>
+<li><p><strong>plims</strong> (<em>list</em>) – The limiting percentiles for the plot</p></li>
+<li><p><strong>vlims</strong> (<em>list</em>) – The limiting values for the plot (superseeds stretch_plims)</p></li>
+<li><p><strong>gauss_blurs</strong> (<em>list</em>) – Radius of gaussian blur, None for nothing</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The updated dictionary of filenames.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus.run_sky_sub">
+<code class="sig-prename descclassname">brutifus.brutifus.</code><code class="sig-name descname">run_sky_sub</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn_list</span></em>, <em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">suffix</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name_in</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name_out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus.html#run_sky_sub"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus.run_sky_sub" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs  a manual sky subtraction, when the observation strategy was flawed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_list</strong> (<em>dict</em>) – The dictionary containing all filenames created by brutifus.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – The dictionary containing all paramaters set by the user.</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – The tag of this step, to be used in all files generated for rapid id.</p></li>
+<li><p><strong>name_in</strong> (<em>str</em>) – name tag to identify which cube to use to run the routine</p></li>
+<li><p><strong>name_out</strong> (<em>str</em>) – name tag to identify which cube comes out of the routine</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The updated dictionary of filenames.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus.run_subtract_continuum">
+<code class="sig-prename descclassname">brutifus.brutifus.</code><code class="sig-name descname">run_subtract_continuum</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn_list</span></em>, <em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">suffix</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name_in</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name_out</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">method</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus.html#run_subtract_continuum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus.run_subtract_continuum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subtracts the sky from a given cube.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn_list</strong> (<em>dict</em>) – The dictionary containing all filenames created by brutifus.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – The dictionary containing all paramaters set by the user.</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – The tag of this step, to be used in all files generated for rapid id.</p></li>
+<li><p><strong>name_in</strong> (<em>str</em>) – name tag to identify which cube to use to run the routine</p></li>
+<li><p><strong>name_out</strong> (<em>str</em>) – name tag to identify which cube comes out of the routine</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The updated dictionary of filenames.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-brutifus.brutifus_cof">
+<span id="brutifus-brutifus-cof-module"></span><h2>brutifus.brutifus_cof module<a class="headerlink" href="#module-brutifus.brutifus_cof" title="Permalink to this headline">¶</a></h2>
+<p>brutifus: a set of Python modules to process datacubes from integral field spectrographs.</p>
+<p>Copyright (C) 2018-2019,  F.P.A. Vogt</p>
+<hr class="docutils" />
+<p>This file contains functions related to the continuum fitting inside brutifus.</p>
+<p>Created November 2018, F.P.A. Vogt - <a class="reference external" href="mailto:frederic&#46;vogt&#37;&#52;&#48;alumni&#46;anu&#46;edu&#46;au">frederic<span>&#46;</span>vogt<span>&#64;</span>alumni<span>&#46;</span>anu<span>&#46;</span>edu<span>&#46;</span>au</a></p>
+<dl class="py function">
+<dt id="brutifus.brutifus_cof.lowess_fit">
+<code class="sig-prename descclassname">brutifus.brutifus_cof.</code><code class="sig-name descname">lowess_fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">spec</span></em>, <em class="sig-param"><span class="n">lams</span></em>, <em class="sig-param"><span class="n">frac</span><span class="o">=</span><span class="default_value">0.05</span></em>, <em class="sig-param"><span class="n">it</span><span class="o">=</span><span class="default_value">5</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_cof.html#lowess_fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_cof.lowess_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit a spectrum using a Locally Weighted Scatterplot Smoothing approach.</p>
+<p>Wraps around statsmodels.nonparametric.smoothers_lowess.lowess().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spec</strong> (<em>1-D numpy array</em>) – The input spectrum.</p></li>
+<li><p><strong>lams</strong> (<em>1-D numpy array</em>) – The corresponding wavelength array.</p></li>
+<li><p><strong>frac</strong> (<em>float</em><em> [</em><em>default:0.05</em><em>]</em>) – Between 0 and 1. The fraction of the data used when estimating each y-value.
+[From the statsmodel lowess function]</p></li>
+<li><p><strong>it</strong> (<em>int</em><em> [</em><em>default:5</em><em>]</em>) – The number of residual-based reweightings to perform.
+[From the statsmodel lowess function]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The fitted array, with size equal to spec.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function fits a spectrum using a LOWESS (Locally Weighted Scatterplot
+Smoothing) technique, described in:
+Cleveland, W.S. (1979) Robust Locally Weighted Regression and Smoothing
+Scatterplots. Journal of the American Statistical Association 74 (368): 829-836.</p>
+<p>This is robust to outliers (hot pixels, cosmics), and is also efficient to
+ignore emission lines. frac=0.05 and it=5 seem to work very fine for spectra
+of any SNR, both lousy with no continuum, and good ones in the center of
+galaxies - modulo the stellar absorption features which are of course
+“ignored” by the LOWESS routine.</p>
+</div>
+<dl class="simple">
+<dt>..warning:: If you have broad emission line in the spectrum, you want to be <em>very</em></dt><dd><p>careful with LOWESS !!!</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-brutifus.brutifus_metadata">
+<span id="brutifus-brutifus-metadata-module"></span><h2>brutifus.brutifus_metadata module<a class="headerlink" href="#module-brutifus.brutifus_metadata" title="Permalink to this headline">¶</a></h2>
+<p>brutifus: a set of Python modules to process datacubes from integral field spectrographs.</p>
+<p>Copyright (C) 2018-2019,  F.P.A. Vogt</p>
+<hr class="docutils" />
+<p>This file contains some global metadata used throughout the brutifus code.</p>
+<p>Created November 2018-2019, F.P.A. Vogt - <a class="reference external" href="mailto:frederic&#46;vogt&#37;&#52;&#48;alumni&#46;anu&#46;edu&#46;au">frederic<span>&#46;</span>vogt<span>&#64;</span>alumni<span>&#46;</span>anu<span>&#46;</span>edu<span>&#46;</span>au</a></p>
+<dl class="py function">
+<dt id="brutifus.brutifus_metadata.get_fn_list_fn">
+<code class="sig-prename descclassname">brutifus.brutifus_metadata.</code><code class="sig-name descname">get_fn_list_fn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_metadata.html#get_fn_list_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_metadata.get_fn_list_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the filename of the storage pickle for all the filenames used by the code</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>target</strong> (<em>string</em>) – name of the target/object to be processed</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the pickled dictionary filename</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-brutifus.brutifus_plots">
+<span id="brutifus-brutifus-plots-module"></span><h2>brutifus.brutifus_plots module<a class="headerlink" href="#module-brutifus.brutifus_plots" title="Permalink to this headline">¶</a></h2>
+<p>brutifus: a set of Python modules to process datacubes from integral field spectrographs.</p>
+<p>Copyright (C) 2018-2019,  F.P.A. Vogt</p>
+<hr class="docutils" />
+<p>This file contains tools for the brutifus routines to create pretty plots seamlessly.</p>
+<p>Created November 2018, F.P.A. Vogt - - <a class="reference external" href="mailto:frederic&#46;vogt&#37;&#52;&#48;alumni&#46;anu&#46;edu&#46;au">frederic<span>&#46;</span>vogt<span>&#64;</span>alumni<span>&#46;</span>anu<span>&#46;</span>edu<span>&#46;</span>au</a></p>
+<dl class="py function">
+<dt id="brutifus.brutifus_plots.crosshair">
+<code class="sig-prename descclassname">brutifus.brutifus_plots.</code><code class="sig-name descname">crosshair</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inner_r</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">pa</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_plots.html#crosshair"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_plots.crosshair" title="Permalink to this definition">¶</a></dt>
+<dd><p>The path of an emtpy cross, useful for indicating targets without crowding the field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Params inner_r</dt>
+<dd class="field-odd"><p>empty inner radius. Default=1 (gap = tick length = 1/3 marker width)</p>
+</dd>
+<dt class="field-even">Params pa</dt>
+<dd class="field-even"><p>position angle (degrees)</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>path</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>matplotlib.path.Path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_plots.finetune_WCSAxes">
+<code class="sig-prename descclassname">brutifus.brutifus_plots.</code><code class="sig-name descname">finetune_WCSAxes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">im_ax</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_plots.html#finetune_WCSAxes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_plots.finetune_WCSAxes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fine-tune the look of WCSAxes plots to my liking.</p>
+<p>Currently, this changes the tick label format to show integer seconds, sets the
+separators to hms/d ‘ “, enables minor ticks, and tweaks the axis labels to be R.A. and
+Dec. (with dots!).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>im_ax</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.axes</span></code>) – the axes to be improved</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(ra,dec), the axes coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>matplotlib ax.coords</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_plots.get_fig_dims">
+<code class="sig-prename descclassname">brutifus.brutifus_plots.</code><code class="sig-name descname">get_fig_dims</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nx</span></em>, <em class="sig-param"><span class="n">ny</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_plots.html#get_fig_dims"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_plots.get_fig_dims" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Returns all the necessary figure dimensions for gridspec, given the size of the</dt><dd><p>image to plot.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nx</strong> (<em>int</em>) – number of pixels along x axis</p></li>
+<li><p><strong>ny</strong> (<em>int</em>) – number of pixels along y axis</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list containing the figure parameters [width, height, height_ratios,
+width_ratios, left, right, botom, top, wspace, hspace]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_plots.get_im_interval">
+<code class="sig-prename descclassname">brutifus.brutifus_plots.</code><code class="sig-name descname">get_im_interval</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pmin</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">pmax</span><span class="o">=</span><span class="default_value">99.9</span></em>, <em class="sig-param"><span class="n">vmin</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">vmax</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_plots.html#get_im_interval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_plots.get_im_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an interval, to feed the ImageNormalize routine from Astropy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pmin</strong> (<em>float</em>) – lower-limit percentile</p></li>
+<li><p><strong>pmax</strong> (<em>float</em>) – upper-limit percentile</p></li>
+<li><p><strong>vmin</strong> (<em>float</em>) – absolute lower limit</p></li>
+<li><p><strong>vmax</strong> (<em>float</em>) – absolute upper limit</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an <code class="xref py py-class docutils literal notranslate"><span class="pre">astropy.visualization.interval</span></code> thingy …</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">astropy.visualization.interval</span></code></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Specifying <em>both</em> vmin and vmax will override pmin and pmax.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_plots.get_im_stretch">
+<code class="sig-prename descclassname">brutifus.brutifus_plots.</code><code class="sig-name descname">get_im_stretch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stretch</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_plots.html#get_im_stretch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_plots.get_im_stretch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a stretch to feed the ImageNormalize routine from Astropy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>stretch</strong> (<em>string</em>) – short name for the stretch I want. Possibilities are ‘arcsinh’ or ‘linear’.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">astropy.visualization.stretch</span></code> thingy …</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">astropy.visualization.stretch</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_plots.make_2Dplot">
+<code class="sig-prename descclassname">brutifus.brutifus_plots.</code><code class="sig-name descname">make_2Dplot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn</span></em>, <em class="sig-param"><span class="n">ext</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">ofn</span><span class="o">=</span><span class="default_value">'plot.pdf'</span></em>, <em class="sig-param"><span class="n">stretch</span><span class="o">=</span><span class="default_value">'arcsinh'</span></em>, <em class="sig-param"><span class="n">vlims</span><span class="o">=</span><span class="default_value">[None, None]</span></em>, <em class="sig-param"><span class="n">plims</span><span class="o">=</span><span class="default_value">[10.0, 99.99]</span></em>, <em class="sig-param"><span class="n">gauss_blur</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cmap</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cblabel</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scalebar</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_plots.html#make_2Dplot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_plots.make_2Dplot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an image from a 2-D fits image with WCS info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn</strong> (<em>string</em>) – The filename (+path!) fo the fits file to display.</p></li>
+<li><p><strong>ext</strong> (<em>int</em>) – The extension of the image to display. The data in this extension MUST be 2-D.</p></li>
+<li><p><strong>ofn</strong> (<em>string</em>) – The output filename (+path!)</p></li>
+<li><p><strong>stretch</strong> (<em>string</em>) – The stretch of the image, fed to aplpy.FITSFigure. ‘linear’, ‘arcsinh’, …</p></li>
+<li><p><strong>vmin</strong> (<em>float</em>) – If set, the lower bound of the colorbar</p></li>
+<li><p><strong>vmax</strong> (<em>float</em>) – If set, the upper bound of the colorbar</p></li>
+<li><p><strong>pmin</strong> (<em>float</em>) – If set, the lower percentile bound of the colorbar</p></li>
+<li><p><strong>pmax</strong> (<em>float</em>) – If set, the upper percentile bound of the colorbar</p></li>
+<li><p><strong>cmap</strong> (<em>string</em>) – If set, the colormap to use. Use ‘alligator’ for the special brutifus cmap.</p></li>
+<li><p><strong>cblabel</strong> (<em>string</em>) – If set, the label of the colorbar.</p></li>
+<li><p><strong>scalebar</strong> (<em>list of len</em><em>(</em><em>3</em><em>)</em>) – If set, adds a scale bar to the plot.
+Format: [lenght arcsec, length kpc, loc, unit]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a list containing the figure, the ax1 and the plot filename.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function absolutely requires WCS coordinates, and a 2-D array.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_plots.make_RGBplot">
+<code class="sig-prename descclassname">brutifus.brutifus_plots.</code><code class="sig-name descname">make_RGBplot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fns</span></em>, <em class="sig-param"><span class="n">ofn</span></em>, <em class="sig-param"><span class="n">ext</span><span class="o">=</span><span class="default_value">[0, 0, 0]</span></em>, <em class="sig-param"><span class="n">stretch</span><span class="o">=</span><span class="default_value">['linear', 'linear', 'linear']</span></em>, <em class="sig-param"><span class="n">plims</span><span class="o">=</span><span class="default_value">[0.25, 99.75, 0.25, 99.75, 0.25, 99.75]</span></em>, <em class="sig-param"><span class="n">vlims</span><span class="o">=</span><span class="default_value">[None, None, None, None, None, None]</span></em>, <em class="sig-param"><span class="n">gauss_blur</span><span class="o">=</span><span class="default_value">[None, None, None]</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scalebar</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_plots.html#make_RGBplot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_plots.make_RGBplot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an RGB image from three fits files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fns</strong> (<em>list</em>) – The filename (+path!) fo the  3 fits file to display (in R, G and B orders).</p></li>
+<li><p><strong>ofn</strong> (<em>str</em>) – The filneame (+path) of the output file.</p></li>
+<li><p><strong>ext</strong> (<em>list</em>) – What HDU extension to read ?</p></li>
+<li><p><strong>stretch</strong> (<em>list</em>) – The stretch to apply to the data, e.g. ‘linear’, ‘log’, ‘arcsinh’.</p></li>
+<li><p><strong>plims</strong> (<em>list</em>) – The limiting percentiles for the plot, as
+[pmin_r, pmax_r, pmin_g, pmax_g, pmin_b, pmax_b]</p></li>
+<li><p><strong>vlims</strong> (<em>list</em>) – The limting values for the plot (superseeds plims), as
+[vmin_r, vmax_r, vmin_g, vmax_g, vmin_b, vmax_b]</p></li>
+<li><p><strong>gauss_blur</strong> (<em>list</em>) – list of radius (in pixels) for gaussian_blur. None = no blur</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – Title to display above the image</p></li>
+<li><p><strong>scalebar</strong> (<em>list</em>) – If set, adds a scale bar to the plot.
+Format: [lenght arcsec, length kpc, loc, unit]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a list containing the figure, the ax1 and the plot filename.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_plots.make_galred_plot">
+<code class="sig-prename descclassname">brutifus.brutifus_plots.</code><code class="sig-name descname">make_galred_plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lams</span></em>, <em class="sig-param"><span class="n">alams</span></em>, <em class="sig-param"><span class="n">etau</span></em>, <em class="sig-param"><span class="n">Ab</span></em>, <em class="sig-param"><span class="n">Av</span></em>, <em class="sig-param"><span class="n">ofn</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_plots.html#make_galred_plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_plots.make_galred_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the extinction Alambda and flux correction factor for galactic extinction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lams</strong> (<em>float</em>) – The wavelength nodes.</p></li>
+<li><p><strong>alams</strong> – The corresponding values of Alambda.</p></li>
+<li><p><strong>etau</strong> – The flux correction factor, i.e. F_(unextinct)/F_(observed).</p></li>
+<li><p><strong>Ab</strong> – The value of Ab.</p></li>
+<li><p><strong>Av</strong> – The value of Av.</p></li>
+<li><p><strong>ofn</strong> (<em>string</em>) – path+name of where to save the plot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_plots.reverse_colourmap">
+<code class="sig-prename descclassname">brutifus.brutifus_plots.</code><code class="sig-name descname">reverse_colourmap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cdict</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_plots.html#reverse_colourmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_plots.reverse_colourmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the inverted colorbar dictionary.</p>
+<p>I most definitely got this from the web somewhere … Stackoverflow?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Params cdict</dt>
+<dd class="field-odd"><p>a colorbar dictionary</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the flipped dictionary</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_plots.show_scale">
+<code class="sig-prename descclassname">brutifus.brutifus_plots.</code><code class="sig-name descname">show_scale</code><span class="sig-paren">(</span><em class="sig-param">ax</em>, <em class="sig-param">scale_length=&lt;Quantity 10. arcsec&gt;</em>, <em class="sig-param">scale_text=None</em>, <em class="sig-param">scale_loc='lower left'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_plots.html#show_scale"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_plots.show_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a scalebar to a given 2D plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> – The axes to which to add the sale.</p></li>
+<li><p><strong>scale_length</strong> – The scale length in astropy.units</p></li>
+<li><p><strong>scale_text</strong> – the string to print as the scalebar, or None</p></li>
+<li><p><strong>scale_loc</strong> – string [default: ‘top left’]
+The location of the scale bar. e.g ‘top right’, ‘bottom left’, etc …</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-brutifus.brutifus_red">
+<span id="brutifus-brutifus-red-module"></span><h2>brutifus.brutifus_red module<a class="headerlink" href="#module-brutifus.brutifus_red" title="Permalink to this headline">¶</a></h2>
+<p>brutifus: a set of Python modules to process datacubes from integral field spectrographs.</p>
+<p>Copyright (C) 2018-2019,  F.P.A. Vogt</p>
+<hr class="docutils" />
+<p>This file contains several function and tools used by the brutifus routines to correct
+emission line fluxes for galactic and extragalactic reddening.</p>
+<p>Created November 2018, F.P.A. Vogt - <a class="reference external" href="mailto:frederic&#46;vogt&#37;&#52;&#48;alumni&#46;anu&#46;edu&#46;au">frederic<span>&#46;</span>vogt<span>&#64;</span>alumni<span>&#46;</span>anu<span>&#46;</span>edu<span>&#46;</span>au</a></p>
+<dl class="py function">
+<dt id="brutifus.brutifus_red.D_fm90">
+<code class="sig-prename descclassname">brutifus.brutifus_red.</code><code class="sig-name descname">D_fm90</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">gamma</span></em>, <em class="sig-param"><span class="n">x0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_red.html#D_fm90"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_red.D_fm90" title="Permalink to this definition">¶</a></dt>
+<dd><p>The UV points from Fitzpatrick &amp; Massa (1990).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – Wavelength in 1/microns.</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – The gamma factor.</p></li>
+<li><p><strong>x0</strong> – The x0 factor.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_red.F_fm90">
+<code class="sig-prename descclassname">brutifus.brutifus_red.</code><code class="sig-name descname">F_fm90</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_red.html#F_fm90"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_red.F_fm90" title="Permalink to this definition">¶</a></dt>
+<dd><p>The UV points from Fitzpatrick &amp; Massa (1990).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>float</em>) – Wavelength in 1/microns.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_red.alam">
+<code class="sig-prename descclassname">brutifus.brutifus_red.</code><code class="sig-name descname">alam</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lams</span></em>, <em class="sig-param"><span class="n">ab</span></em>, <em class="sig-param"><span class="n">av</span></em>, <em class="sig-param"><span class="n">curve</span><span class="o">=</span><span class="default_value">'f99'</span></em>, <em class="sig-param"><span class="n">rv</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rva</span><span class="o">=</span><span class="default_value">4.3</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_red.html#alam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_red.alam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the value of A_lambda for different extinction/attenuation laws.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lams</strong> (<em>numpy array</em>) – The values at which to evaluate the attenuation/extinction.</p></li>
+<li><p><strong>ab</strong> (<em>float</em>) – The extinction in B (e.g. according to NED)</p></li>
+<li><p><strong>av</strong> – The extinction in V (e.g. according to NED)</p></li>
+<li><p><strong>curve</strong> (<em>str</em>) – extinction/attenuation curve to use: ‘f99’, ‘fd05’, ‘cal00’, ‘cal00*’, ‘ccm89’</p></li>
+<li><p><strong>rv</strong> (<em>float</em>) – The value of Rv.</p></li>
+<li><p><strong>rva</strong> (<em>float</em>) – The value of Rva, if using curve=’fd05’.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To reproduce the values given in NED, set curve=’f99’, and rv=3.1. The
+default value of Rv will depend on the curve used (if not specified). rv=3.1
+for ‘f99’, rv=3.08 for ‘fd05’, rv=4.05 for ‘cal00’ and ‘cal00*’, and rv=3.1
+for ‘ccm89’. ‘cal00*’ includes a 0.44 correction factor to derive the stellar
+extinction.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_red.cal00_ke">
+<code class="sig-prename descclassname">brutifus.brutifus_red.</code><code class="sig-name descname">cal00_ke</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lams</span></em>, <em class="sig-param"><span class="n">rv</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_red.html#cal00_ke"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_red.cal00_ke" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Calzetti (2000) law.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lams</strong> (<em>numpy array</em>) – the wavelength array in Angstroem.</p></li>
+<li><p><strong>rv</strong> (<em>float</em>) – the Rv value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ke from Calzetti (2000)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This does NOT include the 0.44 correction factor to apply for stellar
+extinction.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_red.ccm89_alav">
+<code class="sig-prename descclassname">brutifus.brutifus_red.</code><code class="sig-name descname">ccm89_alav</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lams</span></em>, <em class="sig-param"><span class="n">rv</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_red.html#ccm89_alav"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_red.ccm89_alav" title="Permalink to this definition">¶</a></dt>
+<dd><p>The law from Caredelli, Clayton and Mathis (1989).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lams</strong> (<em>numpy array</em>) – the wavelength array in Angstroem</p></li>
+<li><p><strong>rv</strong> (<em>float</em>) – the Rv value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>alav from CCM 1989.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_red.check">
+<code class="sig-prename descclassname">brutifus.brutifus_red.</code><code class="sig-name descname">check</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_red.html#check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_red.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visually check the reddening routines with some plots.</p>
+<p>Make some quick plots to test the reddening functions of brutifus, by comparing with
+the original papers. And make sure I did not mess things up …</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_red.extragalactic_red">
+<code class="sig-prename descclassname">brutifus.brutifus_red.</code><code class="sig-name descname">extragalactic_red</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lam</span></em>, <em class="sig-param"><span class="n">hahb</span></em>, <em class="sig-param"><span class="n">hahb_0</span></em>, <em class="sig-param"><span class="n">curve</span><span class="o">=</span><span class="default_value">'fd05'</span></em>, <em class="sig-param"><span class="n">rv</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rva</span><span class="o">=</span><span class="default_value">4.3</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_red.html#extragalactic_red"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_red.extragalactic_red" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the extragalactic attenuation (based on Halpha/Hbeta).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lam</strong> (<em>float</em>) – The wavelength at which to evaluate the attenuation/extinction.</p></li>
+<li><p><strong>hahb</strong> (<em>numpy array</em>) – The observed Halpha/Hbeta flux ratio. Can be a 2-D map.</p></li>
+<li><p><strong>hahb_0</strong> (<em>float</em>) – The reference theoretical unreddened Halpha/Hbeta flux ratio.</p></li>
+<li><p><strong>curve</strong> (<em>str</em>) – Which extinction/attenuation curve to use.</p></li>
+<li><p><strong>rv</strong> (<em>float</em>) – Rv value.</p></li>
+<li><p><strong>rva</strong> (<em>float</em>) – The value of Rva, if using curve=’fd05’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The ratio of Flux_(unattenuated)/ Flux_(attenuated)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See also Vogt+ (2013), Appendix A. By default, Rv=3.08 and Rva=4.3, which
+gives a curve vey close to that of Calzetti (2000) below the 2000 Ansgtroem
+bump. Supported curves are <code class="docutils literal notranslate"><span class="pre">fd05</span></code>, <code class="docutils literal notranslate"><span class="pre">f99</span></code>, <code class="docutils literal notranslate"><span class="pre">ccm89</span></code>, <code class="docutils literal notranslate"><span class="pre">cal00</span></code> and <code class="docutils literal notranslate"><span class="pre">cal00*</span></code>.
+<code class="docutils literal notranslate"><span class="pre">cal00*</span></code> includes a 0.44 correction factor to derive the stellar extinction.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_red.f99_alebv">
+<code class="sig-prename descclassname">brutifus.brutifus_red.</code><code class="sig-name descname">f99_alebv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lams</span></em>, <em class="sig-param"><span class="n">rv</span><span class="o">=</span><span class="default_value">3.1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_red.html#f99_alebv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_red.f99_alebv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The spline-interpolated Fitzpatrick, PASP (1999) Alambda/E(B-V) function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lams</strong> (<em>numpy array</em>) – The wavelengths in Angstroem.</p></li>
+<li><p><strong>rv</strong> (<em>float</em>) – The Rv value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_red.fd05_elvebv">
+<code class="sig-prename descclassname">brutifus.brutifus_red.</code><code class="sig-name descname">fd05_elvebv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lams</span></em>, <em class="sig-param"><span class="n">rv</span><span class="o">=</span><span class="default_value">3.08</span></em>, <em class="sig-param"><span class="n">rva</span><span class="o">=</span><span class="default_value">4.3</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_red.html#fd05_elvebv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_red.fd05_elvebv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute E(lambda-V)/E(B-V) according to Fischera&amp;Dopita (2005), given Rv and Rva.</p>
+<p>This function reproduces Table 1 in the article. Unlike in Appendix 1 of Vogt et al.
+(2013), this function relies on the polynomials defined in the text to reproduce the
+values of E(lambda-V)/E(B-V) for any Rv and Rva.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lams</strong> (<em>numpy array</em>) – The wavelengths at which to evaluate the attenutation.</p></li>
+<li><p><strong>rv</strong> (<em>float</em>) – The Rv value, following Fischera &amp; Dopita.</p></li>
+<li><p><strong>rva</strong> (<em>float</em>) – The Rva value, following Fischera &amp; Dopita.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The value of E(lambda-V)/E(B-V), as in Table 1 and Fig.3 of the article.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, Rv = 3.08 and Rva = 4.3, which gives a curve vey close to that of
+Calzetti (2000) below the 2000 Ansgtroem bump. Thanks to R. Sutherland at
+ANU/RSAA for sharing his reddening code (included in MAPPINGS V), which
+helped me implement this function properly.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_red.galactic_red">
+<code class="sig-prename descclassname">brutifus.brutifus_red.</code><code class="sig-name descname">galactic_red</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lams</span></em>, <em class="sig-param"><span class="n">ab</span></em>, <em class="sig-param"><span class="n">av</span></em>, <em class="sig-param"><span class="n">curve</span><span class="o">=</span><span class="default_value">'f99'</span></em>, <em class="sig-param"><span class="n">rv</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rva</span><span class="o">=</span><span class="default_value">4.5</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_red.html#galactic_red"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_red.galactic_red" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the galactic extinction for a given sight-line, using Ab and Av.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lams</strong> (<em>numpy array</em>) – The values at which to evaluate the attenuation/extinction.</p></li>
+<li><p><strong>ab</strong> (<em>float</em>) – The extinction in B (e.g. according to NED).</p></li>
+<li><p><strong>av</strong> (<em>float</em>) – The extinction in V (e.g. according to NED).</p></li>
+<li><p><strong>curve</strong> (<em>str</em>) – extinction/attenuation curve to use: ‘f99’, ‘fd05’, ‘cal00’, ‘cal00*’, ‘ccm89’</p></li>
+<li><p><strong>rv</strong> (<em>float</em>) – Rv value.</p></li>
+<li><p><strong>rva</strong> (<em>float</em>) – The value of Rva, if using curve=’fd05’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The ratio of Flux_(unreddened)/ Flux_(observed).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To follow NED, set curve=’f99’, and rv = 3.1. The default value of Rv will
+depend on the curve used (if not specified). rv=3.1 for ‘f99’, rv=3.08 for 
+<code class="docutils literal notranslate"><span class="pre">fd05</span></code>, rv=4.05 for ‘cal00’ and ‘cal00*’, and rv=3.1 for ‘ccm89’. 
+<code class="docutils literal notranslate"><span class="pre">cal00*</span></code> includes a 0.44 correction factor to derive the stellar extinction.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_red.hahb_to_av">
+<code class="sig-prename descclassname">brutifus.brutifus_red.</code><code class="sig-name descname">hahb_to_av</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hahb</span></em>, <em class="sig-param"><span class="n">hahb_0</span></em>, <em class="sig-param"><span class="n">curve</span><span class="o">=</span><span class="default_value">'fd05'</span></em>, <em class="sig-param"><span class="n">rv</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rva</span><span class="o">=</span><span class="default_value">4.3</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_red.html#hahb_to_av"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_red.hahb_to_av" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the reddening in Av mag, from Ha/Hb ratio.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ha_hb</strong> (<em>numpy array</em>) – The flux ratio of Halpha to Hbeta (NOT the log!)</p></li>
+<li><p><strong>ha_hb_0</strong> (<em>float</em>) – The theoretical value of Halpha/Hbeta. (2.86 for SB, more for AGNs)</p></li>
+<li><p><strong>curve</strong> (<em>str</em>) – Which reddeing law to use ?</p></li>
+<li><p><strong>rv</strong> (<em>float</em>) – The value of Rv to use. None for the default.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The corrseponding values of Av.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>1D numpy array</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See also Vogt+ (2013), Appendix A. By default, Rv = 3.08 and Rva = 4.3,
+which gives a curve vey close to that of Calzetti (2000) below the 2000
+Ansgtroem bump.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-brutifus.brutifus_tools">
+<span id="brutifus-brutifus-tools-module"></span><h2>brutifus.brutifus_tools module<a class="headerlink" href="#module-brutifus.brutifus_tools" title="Permalink to this headline">¶</a></h2>
+<p>brutifus: a set of Python modules to process datacubes from integral field spectrographs.</p>
+<p>Copyright (C) 2018-2019,  F.P.A. Vogt</p>
+<hr class="docutils" />
+<p>This file contains general tools for the brutifus routines to fit the stellar continuum
+and the emission lines in an IFU data cube.</p>
+<p>Created November 2018, F.P.A. Vogt - <a class="reference external" href="mailto:frederic&#46;vogt&#37;&#52;&#48;alumni&#46;anu&#46;edu&#46;au">frederic<span>&#46;</span>vogt<span>&#64;</span>alumni<span>&#46;</span>anu<span>&#46;</span>edu<span>&#46;</span>au</a></p>
+<dl class="py function">
+<dt id="brutifus.brutifus_tools.extract_cube">
+<code class="sig-prename descclassname">brutifus.brutifus_tools.</code><code class="sig-name descname">extract_cube</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn</span></em>, <em class="sig-param"><span class="n">inst</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_tools.html#extract_cube"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_tools.extract_cube" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts the data and error associated with a given datacube.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn</strong> (<em>string</em>) – relative path to file</p></li>
+<li><p><strong>inst</strong> (<em>string</em>) – Name of the instrument that took the data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[[lams,data,error], [header0, header_data, header_error]]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_tools.hdu_add_brutifus">
+<code class="sig-prename descclassname">brutifus.brutifus_tools.</code><code class="sig-name descname">hdu_add_brutifus</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hdu</span></em>, <em class="sig-param"><span class="n">procstep</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_tools.html#hdu_add_brutifus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_tools.hdu_add_brutifus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds dedicated brutifus keywords to a FITS file header.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hdu</strong> – The destination hdu to which the brutifus keywords must be added.</p></li>
+<li><p><strong>procstep</strong> (<em>str</em>) – The name of the processing step creating the FITS file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The newheader with brutifus info included.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_tools.hdu_add_lams">
+<code class="sig-prename descclassname">brutifus.brutifus_tools.</code><code class="sig-name descname">hdu_add_lams</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">newhdu</span></em>, <em class="sig-param"><span class="n">refheader</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_tools.html#hdu_add_lams"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_tools.hdu_add_lams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the wavelength information from a reference header to a new hdu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>newhdu</strong> – The destination hdu to which the wavelength keywords must be added.</p></li>
+<li><p><strong>refheader</strong> – The reference header, from which to transer the wavelength keywords.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>FITS HDU, the newheader with wavelength info included.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Keywords transfered are ‘CTYPE3’, ‘CUNIT3’, ‘CD3_3’, ‘CRPIX3’, ‘CRVAL3’,
+‘CD1_3’, ‘CD2_3’, ‘CD3_1’ and ‘CD3_2’.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_tools.hdu_add_wcs">
+<code class="sig-prename descclassname">brutifus.brutifus_tools.</code><code class="sig-name descname">hdu_add_wcs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">newhdu</span></em>, <em class="sig-param"><span class="n">refheader</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_tools.html#hdu_add_wcs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_tools.hdu_add_wcs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the WCS coordinates from a reference header to a new hdu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>newheader</strong> – The destination hdu to which the WCS keywords must be added.</p></li>
+<li><p><strong>refheader</strong> – The reference header, from which to transer the WCS keywords.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The new hdu with WCS info included.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Keywords transfered are  ‘CRPIX1’, ‘CD1_1’, ‘CTYPE1’, ‘CUNIT1’, ‘CRPIX2’,
+‘CD2_2’, ‘CTYPE2’, ‘CUNIT2’, ‘CD1_2’, ‘CD2_1’, ‘CRVAL1’ and ‘CRVAL2’.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_tools.init_worker">
+<code class="sig-prename descclassname">brutifus.brutifus_tools.</code><code class="sig-name descname">init_worker</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_tools.html#init_worker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_tools.init_worker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles KeyboardInterrupt during multiprocessing.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference external" href="https://noswap.com/blog/python-multiprocessing-keyboardinterrupt">https://noswap.com/blog/python-multiprocessing-keyboardinterrupt</a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_tools.inst_resolution">
+<code class="sig-prename descclassname">brutifus.brutifus_tools.</code><code class="sig-name descname">inst_resolution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inst</span><span class="o">=</span><span class="default_value">'MUSE'</span></em>, <em class="sig-param"><span class="n">get_ff</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">show_plot</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_tools.html#inst_resolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_tools.inst_resolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the functional resolution of an instrument as a function of the wavelength.</p>
+<p>Returns a callable function of the wavelength (in Angstroem !).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inst</strong> (<em>str</em>) – The name tag referring to a given instrument.</p></li>
+<li><p><strong>get_ff</strong> (<em>bool</em>) – Whether to recompute the given function from a reference dataset or not.
+Only valid with inst = ‘MUSE’.</p></li>
+<li><p><strong>show_plot</strong> (<em>bool</em>) – Whether to make a plot of the function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A function that takes a float (lambda in Angstroem), and returns the
+corresponding value of the chosen instrument resolution.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>func</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Supported instruments: ‘MUSE’</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="brutifus.brutifus_tools.nearest_2dpoint">
+<code class="sig-prename descclassname">brutifus.brutifus_tools.</code><code class="sig-name descname">nearest_2dpoint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span></em>, <em class="sig-param"><span class="n">points</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_tools.html#nearest_2dpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_tools.nearest_2dpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the nearest neighbor from a bung of points, and the distance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point</strong> (<em>numpy array</em>) – 1x2 array with x, y coord</p></li>
+<li><p><strong>points</strong> (<em>numpy array</em>) – Nx2 array with x, y coords</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the min distance, the delta-x and delta-y, and the closest point</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-brutifus.brutifus_version">
+<span id="brutifus-brutifus-version-module"></span><h2>brutifus.brutifus_version module<a class="headerlink" href="#module-brutifus.brutifus_version" title="Permalink to this headline">¶</a></h2>
+<p>brutifus: a set of Python modules to process datacubes from integral field spectrographs.</p>
+<p>Copyright (C) 2018-2019,  F.P.A. Vogt</p>
+<hr class="docutils" />
+<p>This file contains the version of the code.</p>
+<p>Created August 2019, F.P.A. Vogt - <a class="reference external" href="mailto:frederic&#46;vogt&#37;&#52;&#48;alumni&#46;anu&#46;edu&#46;au">frederic<span>&#46;</span>vogt<span>&#64;</span>alumni<span>&#46;</span>anu<span>&#46;</span>edu<span>&#46;</span>au</a></p>
+</div>
+<div class="section" id="module-brutifus.brutifus_wcs">
+<span id="brutifus-brutifus-wcs-module"></span><h2>brutifus.brutifus_wcs module<a class="headerlink" href="#module-brutifus.brutifus_wcs" title="Permalink to this headline">¶</a></h2>
+<p>brutifus: a set of Python modules to process datacubes from integral field spectrographs.</p>
+<p>Copyright (C) 2018-2019,  F.P.A. Vogt</p>
+<hr class="docutils" />
+<p>This file contains WCS-related function for the higher-leve brutifus routines.</p>
+<p>Created August 2019, F.P.A. Vogt - <a class="reference external" href="mailto:frederic&#46;vogt&#37;&#52;&#48;alumni&#46;anu&#46;edu&#46;au">frederic<span>&#46;</span>vogt<span>&#64;</span>alumni<span>&#46;</span>anu<span>&#46;</span>edu<span>&#46;</span>au</a></p>
+<dl class="py function">
+<dt id="brutifus.brutifus_wcs.get_linear_WCS_corr">
+<code class="sig-prename descclassname">brutifus.brutifus_wcs.</code><code class="sig-name descname">get_linear_WCS_corr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn</span></em>, <em class="sig-param"><span class="n">obstime</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">suffix</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">target</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brutifus/brutifus_wcs.html#get_linear_WCS_corr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#brutifus.brutifus_wcs.get_linear_WCS_corr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identify the linear offset between Gaia and the WCS solution of a given 2D image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn</strong> (<em>string</em>) – 2D FITS image filename (and location)</p></li>
+<li><p><strong>obstime</strong> (<em>astropy.Time</em><em>(</em><em>)</em>) – Observing time and date</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – the tag of this step (for plot filename)</p></li>
+<li><p><strong>target</strong> (<em>str</em>) – target name (for plot filename)</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – print some info to screen</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(dx,dy), the linear offsets in pixels</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Assumes the image is in the primary extension.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-brutifus">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-brutifus" title="Permalink to this headline">¶</a></h2>
+<p>brutifus: a set of Python modules to process datacubes from integral field spectrographs.</p>
+<p>Copyright (C) 2018-2019,  F.P.A. Vogt</p>
+<hr class="docutils" />
+<p>This file specifies the kind of functions that are made directly available to the user.</p>
+<p>Created November 2018, F.P.A. Vogt - <a class="reference external" href="mailto:frederic&#46;vogt&#37;&#52;&#48;alumni&#46;anu&#46;edu&#46;au">frederic<span>&#46;</span>vogt<span>&#64;</span>alumni<span>&#46;</span>anu<span>&#46;</span>edu<span>&#46;</span>au</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="modules.html" class="btn btn-neutral float-left" title="brutifus" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Frédéric P.A. Vogt
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

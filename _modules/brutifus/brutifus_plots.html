@@ -1,0 +1,792 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>brutifus.brutifus_plots &mdash; brutifus 2019.08.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> brutifus
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2019.08.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installing brutifus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../running.html">Running brutifus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledge.html">Acknowledging brutifus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/modules.html">brutifus</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fpavogt/brutifus">Github</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">brutifus</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>brutifus.brutifus_plots</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for brutifus.brutifus_plots</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#pylint: disable=C0103,W0311</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">brutifus: a set of Python modules to process datacubes from integral field spectrographs.\n</span>
+<span class="sd">Copyright (C) 2018-2019,  F.P.A. Vogt</span>
+
+<span class="sd">----------------------------------------------------------------------------------------------------</span>
+
+<span class="sd">This file contains tools for the brutifus routines to create pretty plots seamlessly.</span>
+
+<span class="sd">Created November 2018, F.P.A. Vogt - - frederic.vogt@alumni.anu.edu.au</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage.filters</span> <span class="kn">import</span> <span class="n">gaussian_filter</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
+
+<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+<span class="kn">from</span> <span class="nn">astropy.wcs</span> <span class="kn">import</span> <span class="n">WCS</span>
+<span class="kn">import</span> <span class="nn">astropy.visualization</span> <span class="k">as</span> <span class="nn">astrovis</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">brutifus_metadata</span> <span class="k">as</span> <span class="n">bifus_m</span>
+
+<span class="c1"># Set the proper plotting style</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">bifus_m</span><span class="o">.</span><span class="n">plotstyle</span><span class="p">)</span>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="reverse_colourmap"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_plots.reverse_colourmap">[docs]</a><span class="k">def</span> <span class="nf">reverse_colourmap</span><span class="p">(</span><span class="n">cdict</span><span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Returns the inverted colorbar dictionary.</span>
+
+<span class="sd">   I most definitely got this from the web somewhere ... Stackoverflow?</span>
+
+<span class="sd">   :params cdict: a colorbar dictionary</span>
+<span class="sd">   :type cdict: dict</span>
+
+<span class="sd">   :return: the flipped dictionary</span>
+<span class="sd">   :rtype: dict</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="n">new_cdict</span> <span class="o">=</span> <span class="p">{}</span>
+   <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">cdict</span><span class="p">:</span>
+      <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">cdict</span><span class="p">[</span><span class="n">channel</span><span class="p">]:</span>
+         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+
+      <span class="n">new_cdict</span><span class="p">[</span><span class="n">channel</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+   <span class="k">return</span> <span class="n">new_cdict</span></div>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Here, I define the &quot;alligator&quot; colormap to give brutifus a unique feel, just because I</span>
+<span class="c1"># can. More importantly, I can decide to set the lower and upper bounds to B&amp;W, so that</span>
+<span class="c1"># spaxels outside the colorbar range are directly identifiable. Also, I can make sure that</span>
+<span class="c1"># nan&#39;s show up in 50% grey.</span>
+
+<span class="c1"># Alligator: 6 nodes with linear evolution, suitable for B&amp;W impression</span>
+<span class="n">cdict_alligator</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;red&#39;</span><span class="p">:</span> <span class="p">((</span><span class="mf">0.00</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+            <span class="p">(</span><span class="mf">0.00</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+            <span class="p">(</span><span class="mf">0.20</span><span class="p">,</span> <span class="mi">20</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">20</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+            <span class="p">(</span><span class="mf">0.40</span><span class="p">,</span> <span class="mi">46</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">46</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+            <span class="p">(</span><span class="mf">0.60</span><span class="p">,</span> <span class="mi">108</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">108</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+            <span class="p">(</span><span class="mf">0.80</span><span class="p">,</span> <span class="mi">207</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">207</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+            <span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mi">255</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+            <span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mi">255</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="o">/</span><span class="mi">255</span><span class="p">)),</span>
+
+    <span class="s1">&#39;green&#39;</span><span class="p">:</span> <span class="p">((</span><span class="mf">0.00</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+              <span class="p">(</span><span class="mf">0.00</span><span class="p">,</span> <span class="mi">25</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">25</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+              <span class="p">(</span><span class="mf">0.20</span><span class="p">,</span> <span class="mi">85</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">85</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+              <span class="p">(</span><span class="mf">0.40</span><span class="p">,</span> <span class="mi">139</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">139</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+              <span class="p">(</span><span class="mf">0.60</span><span class="p">,</span> <span class="mi">177</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">177</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+              <span class="p">(</span><span class="mf">0.80</span><span class="p">,</span> <span class="mi">234</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">234</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+              <span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mi">248</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">248</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+              <span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mi">255</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="o">/</span><span class="mi">255</span><span class="p">)),</span>
+
+    <span class="s1">&#39;blue&#39;</span><span class="p">:</span> <span class="p">((</span><span class="mf">0.00</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+             <span class="p">(</span><span class="mf">0.00</span><span class="p">,</span> <span class="mi">25</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">25</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+             <span class="p">(</span><span class="mf">0.20</span><span class="p">,</span> <span class="mi">81</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">81</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+             <span class="p">(</span><span class="mf">0.40</span><span class="p">,</span> <span class="mi">87</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">87</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+             <span class="p">(</span><span class="mf">0.60</span><span class="p">,</span> <span class="mi">86</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">86</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+             <span class="p">(</span><span class="mf">0.80</span><span class="p">,</span> <span class="mi">45</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">45</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+             <span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mi">215</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">215</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span>
+             <span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mi">255</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="o">/</span><span class="mi">255</span><span class="p">))</span>
+    <span class="p">}</span>
+
+<span class="c1"># Initiate the colorbar</span>
+<span class="n">alligator</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="p">(</span><span class="s1">&#39;alligator&#39;</span><span class="p">,</span> <span class="n">cdict_alligator</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
+<span class="c1"># Set the bad colors</span>
+<span class="n">alligator</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Define the inverse alligator cmap as well</span>
+<span class="n">cdict_alligator_r</span> <span class="o">=</span> <span class="n">reverse_colourmap</span><span class="p">(</span><span class="n">cdict_alligator</span><span class="p">)</span>
+<span class="n">alligator_r</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="p">(</span><span class="s1">&#39;alligator_r&#39;</span><span class="p">,</span> <span class="n">cdict_alligator_r</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
+<span class="c1"># Set the bad colors</span>
+<span class="n">alligator_r</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="crosshair"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_plots.crosshair">[docs]</a><span class="k">def</span> <span class="nf">crosshair</span><span class="p">(</span><span class="n">inner_r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pa</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; The path of an emtpy cross, useful for indicating targets without crowding the field.</span>
+
+<span class="sd">   :params inner_r: empty inner radius. Default=1 (gap = tick length = 1/3 marker width)</span>
+<span class="sd">   :type inner_r: float</span>
+<span class="sd">   :params pa: position angle (degrees)</span>
+<span class="sd">   :type pa: float</span>
+
+<span class="sd">   :return: path</span>
+<span class="sd">   :rtype: matplotlib.path.Path</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="n">verts</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">inner_r</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">inner_r</span><span class="p">),</span>
+            <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span>
+            <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">inner_r</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">inner_r</span><span class="p">),</span>
+            <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">),</span>
+            <span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+           <span class="p">]</span>
+
+   <span class="n">pa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">pa</span><span class="p">)</span>
+   <span class="n">rot_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pa</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">pa</span><span class="p">)],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">pa</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pa</span><span class="p">)]])</span>
+
+   <span class="k">for</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">vert</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">verts</span><span class="p">):</span>
+      <span class="n">verts</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">vert</span> <span class="o">*</span> <span class="n">rot_mat</span><span class="p">)</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+   <span class="n">codes</span> <span class="o">=</span> <span class="p">[</span><span class="n">mpl</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">MOVETO</span><span class="p">,</span>
+            <span class="n">mpl</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">LINETO</span><span class="p">,</span>
+            <span class="n">mpl</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">MOVETO</span><span class="p">,</span>
+            <span class="n">mpl</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">LINETO</span><span class="p">,</span>
+            <span class="n">mpl</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">MOVETO</span><span class="p">,</span>
+            <span class="n">mpl</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">LINETO</span><span class="p">,</span>
+            <span class="n">mpl</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">MOVETO</span><span class="p">,</span>
+            <span class="n">mpl</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">LINETO</span><span class="p">,</span>
+            <span class="n">mpl</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">MOVETO</span><span class="p">,</span>
+            <span class="n">mpl</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">CLOSEPOLY</span>
+            <span class="p">]</span>
+
+   <span class="n">path</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">codes</span><span class="p">)</span>
+
+   <span class="k">return</span> <span class="n">path</span></div>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="get_fig_dims"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_plots.get_fig_dims">[docs]</a><span class="k">def</span> <span class="nf">get_fig_dims</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Returns all the necessary figure dimensions for gridspec, given the size of the</span>
+<span class="sd">       image to plot.</span>
+
+<span class="sd">   :param nx: number of pixels along x axis</span>
+<span class="sd">   :type nx: int</span>
+<span class="sd">   :param ny: number of pixels along y axis</span>
+<span class="sd">   :type ny: int</span>
+
+<span class="sd">   :return: list containing the figure parameters [width, height, height_ratios,</span>
+<span class="sd">            width_ratios, left, right, botom, top, wspace, hspace]</span>
+<span class="sd">   :rtype: list</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="n">fig_height</span> <span class="o">=</span> <span class="n">bifus_m</span><span class="o">.</span><span class="n">margin_top</span> <span class="o">+</span> <span class="n">bifus_m</span><span class="o">.</span><span class="n">cb_thick</span> <span class="o">+</span> <span class="n">bifus_m</span><span class="o">.</span><span class="n">margin_bottom</span> <span class="o">+</span> \
+                <span class="n">ny</span><span class="o">/</span><span class="n">nx</span> <span class="o">*</span> <span class="p">(</span><span class="n">bifus_m</span><span class="o">.</span><span class="n">fig_width</span> <span class="o">-</span> <span class="n">bifus_m</span><span class="o">.</span><span class="n">margin_right</span> <span class="o">-</span> <span class="n">bifus_m</span><span class="o">.</span><span class="n">margin_left</span><span class="p">)</span>
+
+   <span class="n">height_ratios</span> <span class="o">=</span> <span class="p">[</span><span class="n">bifus_m</span><span class="o">.</span><span class="n">cb_thick</span><span class="o">/</span><span class="n">fig_height</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+   <span class="n">left</span> <span class="o">=</span> <span class="n">bifus_m</span><span class="o">.</span><span class="n">margin_left</span><span class="o">/</span><span class="n">bifus_m</span><span class="o">.</span><span class="n">fig_width</span>
+   <span class="n">right</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">bifus_m</span><span class="o">.</span><span class="n">margin_right</span><span class="o">/</span><span class="n">bifus_m</span><span class="o">.</span><span class="n">fig_width</span>
+   <span class="n">bottom</span> <span class="o">=</span> <span class="n">bifus_m</span><span class="o">.</span><span class="n">margin_bottom</span><span class="o">/</span><span class="n">fig_height</span>
+   <span class="n">top</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">bifus_m</span><span class="o">.</span><span class="n">margin_top</span><span class="o">/</span><span class="n">fig_height</span>
+
+   <span class="n">wspace</span> <span class="o">=</span> <span class="mf">0.02</span>
+   <span class="n">hspace</span> <span class="o">=</span> <span class="mf">0.02</span>
+
+   <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">bifus_m</span><span class="o">.</span><span class="n">fig_width</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">fig_height</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+           <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">height_ratios</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="p">),</span>
+           <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+           <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">bottom</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">wspace</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">hspace</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span></div>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="get_im_stretch"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_plots.get_im_stretch">[docs]</a><span class="k">def</span> <span class="nf">get_im_stretch</span><span class="p">(</span><span class="n">stretch</span><span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Returns a stretch to feed the ImageNormalize routine from Astropy.</span>
+
+<span class="sd">   :param stretch: short name for the stretch I want. Possibilities are &#39;arcsinh&#39; or &#39;linear&#39;.</span>
+<span class="sd">   :type stretch: string</span>
+
+<span class="sd">   :return: A :class:`astropy.visualization.stretch` thingy ...</span>
+<span class="sd">   :rtype: :class:`astropy.visualization.stretch`</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="k">if</span> <span class="n">stretch</span> <span class="o">==</span> <span class="s1">&#39;arcsinh&#39;</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">astrovis</span><span class="o">.</span><span class="n">AsinhStretch</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">stretch</span> <span class="o">==</span> <span class="s1">&#39;linear&#39;</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">astrovis</span><span class="o">.</span><span class="n">LinearStretch</span><span class="p">()</span>
+
+   <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Ouch! Stretch </span><span class="si">%s</span><span class="s1"> unknown.&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">stretch</span><span class="p">))</span></div>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="get_im_interval"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_plots.get_im_interval">[docs]</a><span class="k">def</span> <span class="nf">get_im_interval</span><span class="p">(</span><span class="n">pmin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pmax</span><span class="o">=</span><span class="mf">99.9</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Returns an interval, to feed the ImageNormalize routine from Astropy.</span>
+
+<span class="sd">   :param pmin: lower-limit percentile</span>
+<span class="sd">   :type pmin: float</span>
+<span class="sd">   :param pmax: upper-limit percentile</span>
+<span class="sd">   :type pmax: float</span>
+<span class="sd">   :param vmin: absolute lower limit</span>
+<span class="sd">   :type vmin: float</span>
+<span class="sd">   :param vmax: absolute upper limit</span>
+<span class="sd">   :type vmax: float</span>
+
+<span class="sd">   :return: an :class:`astropy.visualization.interval` thingy ...</span>
+<span class="sd">   :rtype: :class:`astropy.visualization.interval`</span>
+
+<span class="sd">   .. note:: Specifying *both* vmin and vmax will override pmin and pmax.</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="k">if</span> <span class="n">vmin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">vmax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">astrovis</span><span class="o">.</span><span class="n">ManualInterval</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">)</span>
+
+   <span class="k">return</span> <span class="n">astrovis</span><span class="o">.</span><span class="n">AsymmetricPercentileInterval</span><span class="p">(</span><span class="n">pmin</span><span class="p">,</span> <span class="n">pmax</span><span class="p">)</span></div>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="finetune_WCSAxes"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_plots.finetune_WCSAxes">[docs]</a><span class="k">def</span> <span class="nf">finetune_WCSAxes</span><span class="p">(</span><span class="n">im_ax</span><span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Fine-tune the look of WCSAxes plots to my liking.</span>
+
+<span class="sd">   Currently, this changes the tick label format to show integer seconds, sets the</span>
+<span class="sd">   separators to hms/d &#39; &quot;, enables minor ticks, and tweaks the axis labels to be R.A. and</span>
+<span class="sd">   Dec. (with dots!).</span>
+
+<span class="sd">   :param im_ax: the axes to be improved</span>
+<span class="sd">   :type im_ax: :class:`matplotlib.axes`</span>
+
+<span class="sd">   :return: (ra,dec), the axes coordinates.</span>
+<span class="sd">   :rtype: matplotlib ax.coords</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="n">im_ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+
+   <span class="c1"># Deal with the axes</span>
+   <span class="n">ra</span> <span class="o">=</span> <span class="n">im_ax</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+   <span class="n">dec</span> <span class="o">=</span> <span class="n">im_ax</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+   <span class="n">ra</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="s1">&#39;hh:mm:ss&#39;</span><span class="p">)</span>
+   <span class="n">dec</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="s1">&#39;dd:mm:ss&#39;</span><span class="p">)</span>
+
+   <span class="c1"># This only works when I am using proper LaTeX</span>
+   <span class="n">ra</span><span class="o">.</span><span class="n">set_separator</span><span class="p">((</span><span class="sa">r</span><span class="s1">&#39;$^\mathrm</span><span class="si">{h}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$^\mathrm</span><span class="si">{m}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$^\mathrm</span><span class="si">{s}</span><span class="s1">$ &#39;</span><span class="p">))</span>
+   <span class="n">dec</span><span class="o">.</span><span class="n">set_separator</span><span class="p">((</span><span class="sa">r</span><span class="s1">&#39;$^{\circ}$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$^{\prime}$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$^{\prime\prime}$&#39;</span><span class="p">))</span>
+
+   <span class="n">ra</span><span class="o">.</span><span class="n">display_minor_ticks</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+   <span class="n">dec</span><span class="o">.</span><span class="n">display_minor_ticks</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+   <span class="n">im_ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;R.A. [J2000]&#39;</span><span class="p">)</span>
+   <span class="n">im_ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Dec. [J2000]&#39;</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+   <span class="k">return</span> <span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">)</span></div>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="make_galred_plot"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_plots.make_galred_plot">[docs]</a><span class="k">def</span> <span class="nf">make_galred_plot</span><span class="p">(</span><span class="n">lams</span><span class="p">,</span> <span class="n">alams</span><span class="p">,</span> <span class="n">etau</span><span class="p">,</span> <span class="n">Ab</span><span class="p">,</span> <span class="n">Av</span><span class="p">,</span> <span class="n">ofn</span><span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Plots the extinction Alambda and flux correction factor for galactic extinction.</span>
+
+<span class="sd">   :param lams: The wavelength nodes.</span>
+<span class="sd">   :type lams: 1D numpy array</span>
+<span class="sd">   :param alams: The corresponding values of Alambda.</span>
+<span class="sd">   :type lams: 1D numpy array</span>
+<span class="sd">   :param etau: The flux correction factor, i.e. F_(unextinct)/F_(observed).</span>
+<span class="sd">   :type lams: 1D numpy array</span>
+<span class="sd">   :param Ab: The value of Ab.</span>
+<span class="sd">   :type lams: float</span>
+<span class="sd">   :param Av: The value of Av.</span>
+<span class="sd">   :type lams: float</span>
+<span class="sd">   :param ofn: path+name of where to save the plot</span>
+<span class="sd">   :type ofn: string</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="c1"># Start the plotting</span>
+   <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+   <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.93</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+   <span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">width_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+   <span class="n">gs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.14</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.93</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+
+   <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+   <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lams</span><span class="p">,</span> <span class="n">alams</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">drawstyle</span><span class="o">=</span><span class="s1">&#39;steps-mid&#39;</span><span class="p">)</span>
+
+   <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Wavelength [\AA]&#39;</span><span class="p">)</span>
+   <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;A$_\lambda$ [mag]&#39;</span><span class="p">)</span>
+
+   <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+   <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lams</span><span class="p">,</span> <span class="n">etau</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;firebrick&#39;</span><span class="p">,</span> <span class="n">drawstyle</span><span class="o">=</span><span class="s1">&#39;steps-mid&#39;</span><span class="p">)</span>
+   <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;F$_{\lambda}$/F$_{\lambda,obs}= e^{\tau}$&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;firebrick&#39;</span><span class="p">,</span>
+                  <span class="n">labelpad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+   <span class="c1"># Make the other y-axis crimson for clarity</span>
+   <span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;firebrick&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+   <span class="n">ax2</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;firebrick&#39;</span><span class="p">)</span>
+
+   <span class="c1"># Add the legend</span>
+   <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="s1">&#39;A$_</span><span class="si">{B}</span><span class="s1">$=</span><span class="si">%.3f</span><span class="se">\n</span><span class="s1"> A$_</span><span class="si">{V}</span><span class="s1">$=</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">Ab</span><span class="p">,</span> <span class="n">Av</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+           <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+           <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+   <span class="c1"># Tweak the limits</span>
+   <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">lams</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">lams</span><span class="p">)))</span>
+
+   <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">ofn</span><span class="p">)</span>
+   <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="show_scale"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_plots.show_scale">[docs]</a><span class="k">def</span> <span class="nf">show_scale</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">scale_length</span><span class="o">=</span><span class="mf">10.</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span> <span class="n">scale_text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale_loc</span><span class="o">=</span><span class="s1">&#39;lower left&#39;</span><span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Adds a scalebar to a given 2D plot.</span>
+
+<span class="sd">   :param ax: The axes to which to add the sale.</span>
+<span class="sd">   :param scale_length: The scale length in astropy.units</span>
+<span class="sd">   :param scale_text: the string to print as the scalebar, or None</span>
+<span class="sd">   :param scale_loc: string [default: &#39;top left&#39;]</span>
+<span class="sd">                 The location of the scale bar. e.g &#39;top right&#39;, &#39;bottom left&#39;, etc ...</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="c1"># TODO: this function is broken after leaving aplpy behind ...</span>
+   <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">   # Make a default scale text in case none is specified</span>
+<span class="sd">   if scale_text is None:</span>
+
+<span class="sd">      the_unit = scale_length.unit.to_string()</span>
+
+<span class="sd">      if the_unit == &#39;arcsec&#39;:</span>
+<span class="sd">         the_unit = r&#39;$^{\prime\prime}$&#39;</span>
+<span class="sd">      elif the_unit == &#39;arcmin&#39;:</span>
+<span class="sd">         the_unit = r&#39;$^{\prime}$&#39;</span>
+<span class="sd">      else:</span>
+<span class="sd">         the_unit = &#39; &#39; + the_unit</span>
+
+<span class="sd">      scale_text = &#39;%.1f%s&#39; % (scale_length.value, the_unit)</span>
+
+<span class="sd">   # TODO:</span>
+<span class="sd">   # Looks like I still need to divide the length by the &quot;pixel scale&quot; ?</span>
+<span class="sd">   # Unless I need to divide by the Dec ?</span>
+<span class="sd">   # But how do I extract this from the ax ???</span>
+
+<span class="sd">   # Create the scalebar</span>
+<span class="sd">   bar = AnchoredSizeBar(ax.get_transform(&#39;world&#39;), scale_length.to(u.degree).value,</span>
+<span class="sd">                         scale_text, scale_loc,</span>
+<span class="sd">                         sep = 5, pad = 0.5, borderpad = 0.4)</span>
+
+<span class="sd">   # Adjust the bar thickness</span>
+<span class="sd">   bar.size_bar.get_children()[0].set_linewidth(2)</span>
+<span class="sd">   # Add it to the plot</span>
+<span class="sd">   ax.add_artist(bar)</span>
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Ouch! The scalebar is not working yet ...!&#39;</span><span class="p">)</span></div>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="make_2Dplot"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_plots.make_2Dplot">[docs]</a><span class="k">def</span> <span class="nf">make_2Dplot</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="c1"># path to the data (complete!)</span>
+                <span class="n">ext</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="c1"># Which extension am I looking for ?</span>
+                <span class="n">ofn</span><span class="o">=</span><span class="s1">&#39;plot.pdf&#39;</span><span class="p">,</span> <span class="c1"># Savefig filename</span>
+                <span class="n">stretch</span><span class="o">=</span><span class="s1">&#39;arcsinh&#39;</span><span class="p">,</span>
+                <span class="n">vlims</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+                <span class="n">plims</span><span class="o">=</span><span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">99.99</span><span class="p">],</span>
+                <span class="n">gauss_blur</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">cblabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">scalebar</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Creates an image from a 2-D fits image with WCS info.</span>
+
+<span class="sd">   :param fn: The filename (+path!) fo the fits file to display.</span>
+<span class="sd">   :type fn: string</span>
+<span class="sd">   :param ext: The extension of the image to display. The data in this extension MUST be 2-D.</span>
+<span class="sd">   :type ext: int</span>
+<span class="sd">   :param ofn: The output filename (+path!)</span>
+<span class="sd">   :type ofn: string</span>
+<span class="sd">   :param stretch: The stretch of the image, fed to aplpy.FITSFigure. &#39;linear&#39;, &#39;arcsinh&#39;, ...</span>
+<span class="sd">   :type stretch: string</span>
+<span class="sd">   :param vmin: If set, the lower bound of the colorbar</span>
+<span class="sd">   :type vmin: float</span>
+<span class="sd">   :param vmax: If set, the upper bound of the colorbar</span>
+<span class="sd">   :type vmax: float</span>
+<span class="sd">   :param pmin: If set, the lower percentile bound of the colorbar</span>
+<span class="sd">   :type pmin: float</span>
+<span class="sd">   :param pmax: If set, the upper percentile bound of the colorbar</span>
+<span class="sd">   :type pmax: float</span>
+<span class="sd">   :param cmap: If set, the colormap to use. Use &#39;alligator&#39; for the special brutifus cmap.</span>
+<span class="sd">   :type cmap: string</span>
+<span class="sd">   :param cblabel: If set, the label of the colorbar.</span>
+<span class="sd">   :type cblabel: string</span>
+<span class="sd">   :param scalebar: If set, adds a scale bar to the plot.</span>
+<span class="sd">                    Format: [lenght arcsec, length kpc, loc, unit]</span>
+<span class="sd">   :type scalebar: list of len(3)</span>
+
+<span class="sd">   :return: a list containing the figure, the ax1 and the plot filename.</span>
+<span class="sd">   :rtype: list</span>
+
+<span class="sd">   .. note:: This function absolutely requires WCS coordinates, and a 2-D array.</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="c1"># First get the data</span>
+   <span class="n">hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+   <span class="n">data</span> <span class="o">=</span> <span class="n">hdu</span><span class="p">[</span><span class="n">ext</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+   <span class="n">header</span> <span class="o">=</span> <span class="n">hdu</span><span class="p">[</span><span class="n">ext</span><span class="p">]</span><span class="o">.</span><span class="n">header</span>
+   <span class="n">hdu</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+   <span class="c1"># What is the size of my image ?</span>
+   <span class="p">(</span><span class="n">ny</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+   <span class="c1"># What is the associated fig dimensions I need ?</span>
+   <span class="n">fig_dims</span> <span class="o">=</span> <span class="n">get_fig_dims</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
+
+   <span class="c1"># If requested, smooth the array</span>
+   <span class="k">if</span> <span class="n">gauss_blur</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">data</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">gauss_blur</span><span class="p">)</span>
+
+   <span class="c1"># Let&#39;s create a plot, and forget about using aplpy</span>
+   <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+   <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fig_dims</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+   <span class="c1"># Set the scene with gridspec</span>
+   <span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">width_ratios</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                          <span class="n">left</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">right</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">bottom</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">top</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span>
+                          <span class="n">wspace</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">hspace</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+
+   <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="n">WCS</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+
+   <span class="c1"># What is the colorscheme selected ?</span>
+   <span class="k">if</span> <span class="n">cmap</span> <span class="o">==</span> <span class="s1">&#39;alligator&#39;</span><span class="p">:</span>
+      <span class="n">mycmap</span> <span class="o">=</span> <span class="n">alligator</span>
+   <span class="k">elif</span> <span class="n">cmap</span> <span class="o">==</span> <span class="s1">&#39;alligator_r&#39;</span><span class="p">:</span>
+      <span class="n">mycmap</span> <span class="o">=</span> <span class="n">alligator_r</span>
+   <span class="k">elif</span> <span class="n">cmap</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">mycmap</span> <span class="o">=</span> <span class="s1">&#39;Greys&#39;</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="n">mycmap</span> <span class="o">=</span> <span class="n">cmap</span>
+
+   <span class="c1"># What is the normalization ?</span>
+   <span class="n">norm</span> <span class="o">=</span> <span class="n">astrovis</span><span class="o">.</span><span class="n">ImageNormalize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+                                  <span class="n">interval</span><span class="o">=</span><span class="n">get_im_interval</span><span class="p">(</span><span class="n">pmin</span><span class="o">=</span><span class="n">plims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pmax</span><span class="o">=</span><span class="n">plims</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                                           <span class="n">vmin</span><span class="o">=</span><span class="n">vlims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vlims</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                                  <span class="n">stretch</span><span class="o">=</span><span class="n">get_im_stretch</span><span class="p">(</span><span class="n">stretch</span><span class="p">),</span>
+                                  <span class="n">clip</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+   <span class="c1"># Plot the image</span>
+   <span class="n">im</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">mycmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+
+   <span class="c1"># TODO: setting the background color of RGB plots does not work</span>
+   <span class="n">ax1</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;salmon&#39;</span><span class="p">)</span>
+
+   <span class="c1"># Add the scalebar</span>
+   <span class="c1">#if scalebar is not None:</span>
+   <span class="c1">#   show_scale(ax1, scale_length = scalebar[0], scale_text = scalebar[1],</span>
+   <span class="c1">#              scale_loc = scalebar[2])</span>
+
+   <span class="c1"># Make the axes look pretty</span>
+   <span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">)</span> <span class="o">=</span> <span class="n">finetune_WCSAxes</span><span class="p">(</span><span class="n">ax1</span><span class="p">)</span>
+
+   <span class="c1"># Deal with the colorbar</span>
+   <span class="k">if</span> <span class="n">cmap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+      <span class="n">ax0</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+      <span class="n">cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cax</span><span class="o">=</span><span class="n">ax0</span><span class="p">,</span> <span class="n">mappable</span><span class="o">=</span><span class="n">im</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">ticklocation</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+      <span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">cblabel</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+      <span class="c1">#cb.ax.xaxis.set_ticks_position(&#39;top&#39;)</span>
+      <span class="n">ax0</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+      <span class="c1">#TODO: can&#39;t get the minor ticks working properly - turn them off for now</span>
+      <span class="n">cb</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">minorticks_off</span><span class="p">()</span>
+
+   <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">ofn</span><span class="p">)</span>
+
+   <span class="k">return</span> <span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ofn</span><span class="p">)</span></div>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="make_RGBplot"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_plots.make_RGBplot">[docs]</a><span class="k">def</span> <span class="nf">make_RGBplot</span><span class="p">(</span><span class="n">fns</span><span class="p">,</span> <span class="n">ofn</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                 <span class="n">stretch</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">],</span>
+                 <span class="n">plims</span><span class="o">=</span><span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">99.75</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">99.75</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">99.75</span><span class="p">],</span>
+                 <span class="n">vlims</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+                 <span class="n">gauss_blur</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+                 <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">scalebar</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Creates an RGB image from three fits files.</span>
+
+<span class="sd">   :param fns: The filename (+path!) fo the  3 fits file to display (in R, G and B orders).</span>
+<span class="sd">   :type fns: list</span>
+<span class="sd">   :param ofn: The filneame (+path) of the output file.</span>
+<span class="sd">   :type ofn: str</span>
+<span class="sd">   :param ext: What HDU extension to read ?</span>
+<span class="sd">   :type ext: list</span>
+<span class="sd">   :param stretch: The stretch to apply to the data, e.g. &#39;linear&#39;, &#39;log&#39;, &#39;arcsinh&#39;.</span>
+<span class="sd">   :type stretch: list</span>
+<span class="sd">   :param plims: The limiting percentiles for the plot, as</span>
+<span class="sd">                 [pmin_r, pmax_r, pmin_g, pmax_g, pmin_b, pmax_b]</span>
+<span class="sd">   :type plims: list</span>
+<span class="sd">   :param vlims: The limting values for the plot (superseeds plims), as</span>
+<span class="sd">                 [vmin_r, vmax_r, vmin_g, vmax_g, vmin_b, vmax_b]</span>
+<span class="sd">   :type vlims: list</span>
+<span class="sd">   :param gauss_blur: list of radius (in pixels) for gaussian_blur. None = no blur</span>
+<span class="sd">   :type gauss_blur: list</span>
+<span class="sd">   :param title: Title to display above the image</span>
+<span class="sd">   :type title: str</span>
+<span class="sd">   :param scalebar: If set, adds a scale bar to the plot.</span>
+<span class="sd">                    Format: [lenght arcsec, length kpc, loc, unit]</span>
+<span class="sd">   :type scalebar: list</span>
+
+<span class="sd">   :return: a list containing the figure, the ax1 and the plot filename.</span>
+<span class="sd">   :rtype: list</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="c1"># If I was given a single stretch for all images, enlarge it</span>
+   <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stretch</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+      <span class="n">stretch</span> <span class="o">=</span> <span class="p">[</span><span class="n">stretch</span><span class="p">,</span> <span class="n">stretch</span><span class="p">,</span> <span class="n">stretch</span><span class="p">]</span>
+
+   <span class="c1"># If I was given a single extension, assume it is the same everywhere</span>
+   <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ext</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+      <span class="n">ext</span> <span class="o">=</span> <span class="p">[</span><span class="n">ext</span><span class="p">,</span> <span class="n">ext</span><span class="p">,</span> <span class="n">ext</span><span class="p">]</span>
+
+   <span class="c1"># Open the data and headers</span>
+   <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+   <span class="n">header</span> <span class="o">=</span> <span class="p">[]</span>
+
+   <span class="k">for</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fns</span><span class="p">):</span>
+      <span class="n">hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+
+      <span class="c1"># Get the data</span>
+      <span class="n">this_data</span> <span class="o">=</span> <span class="n">hdu</span><span class="p">[</span><span class="n">ext</span><span class="p">[</span><span class="n">f</span><span class="p">]]</span><span class="o">.</span><span class="n">data</span>
+
+      <span class="c1"># If requested, smooth the array</span>
+      <span class="k">if</span> <span class="n">gauss_blur</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+         <span class="n">this_data</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">this_data</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">gauss_blur</span><span class="p">[</span><span class="n">f</span><span class="p">])</span>
+
+      <span class="c1"># If the image if full of NaN&#39;s ... issue a proper error, &#39;cause I can&#39;t normalize it!</span>
+      <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">this_data</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">this_data</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">this_data</span><span class="p">)]):</span>
+         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Ouch ... the </span><span class="si">%s</span><span class="s1"> image if full of NaNs!&#39;</span> <span class="o">%</span> <span class="p">([</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;G &#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">][</span><span class="n">f</span><span class="p">]))</span>
+
+      <span class="c1"># Normalize it</span>
+      <span class="n">this_data</span> <span class="o">=</span> <span class="n">get_im_interval</span><span class="p">(</span><span class="n">pmin</span><span class="o">=</span><span class="n">plims</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">f</span><span class="p">],</span> <span class="n">pmax</span><span class="o">=</span><span class="n">plims</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">f</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+                                  <span class="n">vmin</span><span class="o">=</span><span class="n">vlims</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">f</span><span class="p">],</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vlims</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">f</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])(</span><span class="n">this_data</span><span class="p">)</span>
+
+      <span class="c1"># Stretch it</span>
+      <span class="n">this_data</span> <span class="o">=</span> <span class="n">get_im_stretch</span><span class="p">(</span><span class="n">stretch</span><span class="p">[</span><span class="n">f</span><span class="p">])(</span><span class="n">this_data</span><span class="p">)</span>
+
+      <span class="n">data</span> <span class="o">+=</span> <span class="p">[</span><span class="n">this_data</span><span class="p">]</span>
+      <span class="n">header</span> <span class="o">+=</span> <span class="p">[</span><span class="n">hdu</span><span class="p">[</span><span class="n">ext</span><span class="p">[</span><span class="n">f</span><span class="p">]]</span><span class="o">.</span><span class="n">header</span><span class="p">]</span>
+
+    <span class="c1"># What is the size of my images ?</span>
+   <span class="p">(</span><span class="n">ny</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+   <span class="c1"># What is the associated fig dimensions I need ?</span>
+   <span class="n">fig_dims</span> <span class="o">=</span> <span class="n">get_fig_dims</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
+
+   <span class="c1"># Let&#39;s create a plot, and forget about using aplpy</span>
+   <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+   <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fig_dims</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+   <span class="c1"># Set the scene with gridspec</span>
+   <span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">width_ratios</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                          <span class="n">left</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">right</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">bottom</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">top</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span>
+                          <span class="n">wspace</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">hspace</span><span class="o">=</span><span class="n">fig_dims</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+
+   <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="n">WCS</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+   <span class="n">im</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span>
+                   <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+   <span class="c1"># Assume an astro image, and set the ticks to white</span>
+   <span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">)</span>
+
+   <span class="c1"># Make the axes look pretty</span>
+   <span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">)</span> <span class="o">=</span> <span class="n">finetune_WCSAxes</span><span class="p">(</span><span class="n">ax1</span><span class="p">)</span>
+
+   <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+   <span class="c1"># Save the figure</span>
+   <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">ofn</span><span class="p">)</span>
+
+   <span class="k">return</span> <span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ofn</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Frédéric P.A. Vogt
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

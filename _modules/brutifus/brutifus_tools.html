@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>brutifus.brutifus_tools &mdash; brutifus 2019.08.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> brutifus
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2019.08.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installing brutifus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../running.html">Running brutifus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledge.html">Acknowledging brutifus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/modules.html">brutifus</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fpavogt/brutifus">Github</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">brutifus</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>brutifus.brutifus_tools</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for brutifus.brutifus_tools</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#pylint: disable=C0103,W0311</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">brutifus: a set of Python modules to process datacubes from integral field spectrographs.\n</span>
+<span class="sd">Copyright (C) 2018-2019,  F.P.A. Vogt</span>
+
+<span class="sd">----------------------------------------------------------------------------------------------------</span>
+
+<span class="sd">This file contains general tools for the brutifus routines to fit the stellar continuum</span>
+<span class="sd">and the emission lines in an IFU data cube.</span>
+
+<span class="sd">Created November 2018, F.P.A. Vogt - frederic.vogt@alumni.anu.edu.au</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">signal</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">astropy.constants</span> <span class="kn">import</span> <span class="n">c</span>
+<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+
+<span class="kn">from</span> <span class="nn">.brutifus_version</span> <span class="kn">import</span> <span class="n">__version__</span> <span class="k">as</span> <span class="n">version</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">brutifus_metadata</span> <span class="k">as</span> <span class="n">bifus_m</span>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="extract_cube"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_tools.extract_cube">[docs]</a><span class="k">def</span> <span class="nf">extract_cube</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">inst</span><span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Extracts the data and error associated with a given datacube.</span>
+
+<span class="sd">   :param fn: relative path to file</span>
+<span class="sd">   :type fn: string</span>
+<span class="sd">   :param inst: Name of the instrument that took the data</span>
+<span class="sd">   :type inst: string</span>
+
+<span class="sd">   :return: [[lams,data,error], [header0, header_data, header_error]]</span>
+<span class="sd">   :rtype: list</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+      <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;File not found: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">fn</span><span class="p">))</span>
+
+   <span class="k">if</span> <span class="n">inst</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">bifus_m</span><span class="o">.</span><span class="n">ffmt</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+      <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Instrument not supported: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inst</span><span class="p">))</span>
+
+   <span class="c1"># Open the FITS file, and extract the info I need</span>
+   <span class="n">hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+
+   <span class="k">if</span> <span class="n">inst</span> <span class="o">==</span> <span class="s1">&#39;MUSE&#39;</span><span class="p">:</span>
+      <span class="n">header0</span> <span class="o">=</span> <span class="n">hdu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="n">header0</span> <span class="o">=</span> <span class="kc">None</span>
+
+   <span class="n">data</span> <span class="o">=</span> <span class="n">hdu</span><span class="p">[</span><span class="n">bifus_m</span><span class="o">.</span><span class="n">ffmt</span><span class="p">[</span><span class="n">inst</span><span class="p">][</span><span class="s1">&#39;data&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">data</span>
+   <span class="n">header_data</span> <span class="o">=</span> <span class="n">hdu</span><span class="p">[</span><span class="n">bifus_m</span><span class="o">.</span><span class="n">ffmt</span><span class="p">[</span><span class="n">inst</span><span class="p">][</span><span class="s1">&#39;data&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">header</span>
+   <span class="n">error</span> <span class="o">=</span> <span class="n">hdu</span><span class="p">[</span><span class="n">bifus_m</span><span class="o">.</span><span class="n">ffmt</span><span class="p">[</span><span class="n">inst</span><span class="p">][</span><span class="s1">&#39;var&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">data</span>
+   <span class="n">header_error</span> <span class="o">=</span> <span class="n">hdu</span><span class="p">[</span><span class="n">bifus_m</span><span class="o">.</span><span class="n">ffmt</span><span class="p">[</span><span class="n">inst</span><span class="p">][</span><span class="s1">&#39;var&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">header</span>
+   <span class="n">hdu</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+   <span class="c1"># Build the wavelength array - REST frame !</span>
+   <span class="n">lams</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">header_data</span><span class="p">[</span><span class="s1">&#39;NAXIS3&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> \
+            <span class="n">header_data</span><span class="p">[</span><span class="s1">&#39;CD3_3&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">header_data</span><span class="p">[</span><span class="s1">&#39;CRVAL3&#39;</span><span class="p">]</span>
+
+
+   <span class="k">return</span> <span class="p">[[</span><span class="n">lams</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">error</span><span class="p">],</span> <span class="p">[</span><span class="n">header0</span><span class="p">,</span> <span class="n">header_data</span><span class="p">,</span> <span class="n">header_error</span><span class="p">]]</span></div>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="nearest_2dpoint"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_tools.nearest_2dpoint">[docs]</a><span class="k">def</span> <span class="nf">nearest_2dpoint</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Returns the nearest neighbor from a bung of points, and the distance</span>
+
+<span class="sd">   :param point: 1x2 array with x, y coord</span>
+<span class="sd">   :type point: numpy array</span>
+<span class="sd">   :param points: Nx2 array with x, y coords</span>
+<span class="sd">   :type points: numpy array</span>
+
+<span class="sd">   :return: the min distance, the delta-x and delta-y, and the closest point</span>
+<span class="sd">   :rtype: list</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="n">dist_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">points</span> <span class="o">-</span> <span class="n">point</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+   <span class="n">min_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dist_2</span><span class="p">)</span>
+   <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dist_2</span><span class="p">[</span><span class="n">min_id</span><span class="p">]),</span> <span class="n">points</span><span class="p">[</span><span class="n">min_id</span><span class="p">]</span> <span class="o">-</span> <span class="n">point</span><span class="p">,</span> <span class="n">points</span><span class="p">[</span><span class="n">min_id</span><span class="p">])</span></div>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="init_worker"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_tools.init_worker">[docs]</a><span class="k">def</span> <span class="nf">init_worker</span><span class="p">():</span>
+   <span class="sd">&#39;&#39;&#39; Handles KeyboardInterrupt during multiprocessing.</span>
+
+<span class="sd">   .. note:: See https://noswap.com/blog/python-multiprocessing-keyboardinterrupt</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+   <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIG_IGN</span><span class="p">)</span></div>
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="hdu_add_brutifus"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_tools.hdu_add_brutifus">[docs]</a><span class="k">def</span> <span class="nf">hdu_add_brutifus</span><span class="p">(</span><span class="n">hdu</span><span class="p">,</span> <span class="n">procstep</span><span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Adds dedicated brutifus keywords to a FITS file header.</span>
+
+<span class="sd">   :param hdu: The destination hdu to which the brutifus keywords must be added.</span>
+<span class="sd">   :param procstep: The name of the processing step creating the FITS file.</span>
+<span class="sd">   :type procstep: str</span>
+
+<span class="sd">   :return: The newheader with brutifus info included.</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="n">hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;BRUTIFUS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="s1">&#39;brutifus version&#39;</span><span class="p">)</span>
+   <span class="n">hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;B_STEP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">procstep</span><span class="p">,</span> <span class="s1">&#39;brutifus processing step&#39;</span><span class="p">)</span>
+
+   <span class="k">return</span> <span class="n">hdu</span></div>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="hdu_add_wcs"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_tools.hdu_add_wcs">[docs]</a><span class="k">def</span> <span class="nf">hdu_add_wcs</span><span class="p">(</span><span class="n">newhdu</span><span class="p">,</span> <span class="n">refheader</span><span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Adds the WCS coordinates from a reference header to a new hdu.</span>
+
+<span class="sd">   :param newheader: The destination hdu to which the WCS keywords must be added.</span>
+<span class="sd">   :param refheader: The reference header, from which to transer the WCS keywords.</span>
+
+<span class="sd">   :return: The new hdu with WCS info included.</span>
+
+<span class="sd">   .. note:: Keywords transfered are  &#39;CRPIX1&#39;, &#39;CD1_1&#39;, &#39;CTYPE1&#39;, &#39;CUNIT1&#39;, &#39;CRPIX2&#39;,</span>
+<span class="sd">             &#39;CD2_2&#39;, &#39;CTYPE2&#39;, &#39;CUNIT2&#39;, &#39;CD1_2&#39;, &#39;CD2_1&#39;, &#39;CRVAL1&#39; and &#39;CRVAL2&#39;.</span>
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CRPIX1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CRPIX1&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CD1_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CD1_1&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CTYPE1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CTYPE1&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CUNIT1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CUNIT1&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CRPIX2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CRPIX2&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CD2_2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CD2_2&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CTYPE2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CTYPE2&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CUNIT2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CUNIT2&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CD1_2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CD1_2&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CD2_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CD2_1&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CRVAL1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CRVAL1&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CRVAL2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CRVAL2&#39;</span><span class="p">]</span>
+
+   <span class="k">return</span> <span class="n">newhdu</span></div>
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="hdu_add_lams"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_tools.hdu_add_lams">[docs]</a><span class="k">def</span> <span class="nf">hdu_add_lams</span><span class="p">(</span><span class="n">newhdu</span><span class="p">,</span> <span class="n">refheader</span><span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Adds the wavelength information from a reference header to a new hdu.</span>
+
+<span class="sd">   :param newhdu: The destination hdu to which the wavelength keywords must be added.</span>
+<span class="sd">   :param refheader: The reference header, from which to transer the wavelength keywords.</span>
+
+<span class="sd">   :return: FITS HDU, the newheader with wavelength info included.</span>
+
+<span class="sd">   .. note:: Keywords transfered are &#39;CTYPE3&#39;, &#39;CUNIT3&#39;, &#39;CD3_3&#39;, &#39;CRPIX3&#39;, &#39;CRVAL3&#39;,</span>
+<span class="sd">             &#39;CD1_3&#39;, &#39;CD2_3&#39;, &#39;CD3_1&#39; and &#39;CD3_2&#39;.</span>
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CTYPE3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CTYPE3&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CUNIT3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CUNIT3&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CD3_3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CD3_3&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CRPIX3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CRPIX3&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CRVAL3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CRVAL3&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CD1_3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CD1_3&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CD2_3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CD2_3&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CD3_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CD3_1&#39;</span><span class="p">]</span>
+   <span class="n">newhdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;CD3_2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refheader</span><span class="p">[</span><span class="s1">&#39;CD3_2&#39;</span><span class="p">]</span>
+
+   <span class="k">return</span> <span class="n">newhdu</span></div>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="inst_resolution"><a class="viewcode-back" href="../../modules/brutifus.html#brutifus.brutifus_tools.inst_resolution">[docs]</a><span class="k">def</span> <span class="nf">inst_resolution</span><span class="p">(</span><span class="n">inst</span><span class="o">=</span><span class="s1">&#39;MUSE&#39;</span><span class="p">,</span> <span class="n">get_ff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+   <span class="sd">&#39;&#39;&#39; Returns the functional resolution of an instrument as a function of the wavelength.</span>
+
+<span class="sd">   Returns a callable function of the wavelength (in Angstroem !).</span>
+
+<span class="sd">   :param inst: The name tag referring to a given instrument.</span>
+<span class="sd">   :type inst: str</span>
+<span class="sd">   :param get_ff: Whether to recompute the given function from a reference dataset or not.</span>
+<span class="sd">                  Only valid with inst = &#39;MUSE&#39;.</span>
+<span class="sd">   :type get_ff: bool</span>
+<span class="sd">   :param show_plot: Whether to make a plot of the function.</span>
+<span class="sd">   :type show_plot: bool</span>
+
+<span class="sd">   :return: A function that takes a float (lambda in Angstroem), and returns the</span>
+<span class="sd">            corresponding value of the chosen instrument resolution.</span>
+<span class="sd">   :rtype: func</span>
+
+<span class="sd">   .. note:: Supported instruments: &#39;MUSE&#39;</span>
+
+<span class="sd">   &#39;&#39;&#39;</span>
+
+   <span class="k">if</span> <span class="n">inst</span> <span class="o">==</span> <span class="s1">&#39;MUSE&#39;</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">get_ff</span><span class="p">:</span>
+         <span class="n">this_fn_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+         <span class="n">ref_fn</span> <span class="o">=</span> <span class="s1">&#39;MUSE_specs/MUSE_spectral_resolution.txt&#39;</span>
+         <span class="n">R_lam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">this_fn_path</span><span class="p">,</span> <span class="n">ref_fn</span><span class="p">),</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+         <span class="c1"># Fit a polynomial to this. Deg 3 works well.</span>
+         <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">R_lam</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">10.</span><span class="p">,</span> <span class="n">R_lam</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+         <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+
+         <span class="k">if</span> <span class="n">show_plot</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span>
+
+            <span class="n">lams</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4500</span><span class="p">,</span> <span class="mf">10000.</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lams</span><span class="p">,</span> <span class="n">p</span><span class="p">(</span><span class="n">lams</span><span class="p">),</span> <span class="s1">&#39;b-&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_lam</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">10.</span><span class="p">,</span> <span class="n">R_lam</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k.&#39;</span><span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+      <span class="k">else</span><span class="p">:</span>
+         <span class="c1">#Fit on 02.2016:</span>
+         <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">([</span><span class="o">-</span><span class="mf">8.27037043e-09</span><span class="p">,</span> <span class="mf">1.40175196e-04</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.83940026e-01</span><span class="p">,</span> <span class="mf">7.13549344e+02</span><span class="p">])</span>
+
+      <span class="k">return</span> <span class="n">p</span>
+
+   <span class="k">else</span><span class="p">:</span>
+      <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Unknown instrument...&#39;</span><span class="p">)</span></div>
+
+<span class="c1"># --------------------------------------------------------------------------------------------------</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Frédéric P.A. Vogt
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
